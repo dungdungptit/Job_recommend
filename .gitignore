@@ -2,5 +2,5 @@
 /.env
 .steamlit/*
 .steamlit/.secrets.toml
-./.steamlit/*
-./.steamlit/.secrets.toml
+/.steamlit/*
+/.steamlit/.secrets.toml

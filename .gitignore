@@ -1,6 +1,6 @@
 .env
 /.env
-.steamlit/*
-.steamlit/.secrets.toml
-/.steamlit/*
-/.steamlit/.secrets.toml
+.streamlit/*
+.streamlit/.secrets.toml
+/.streamlit/*
+/.streamlit/.secrets.toml

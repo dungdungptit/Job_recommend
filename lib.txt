@@ -1,0 +1,35 @@
+scikit-learn
+pip install pydantic[email]
+pip install --upgrade --force-reinstall -qU transformers tokenizers
+transformers
+langchain-huggingface
+torch
+torchvision
+torchaudio
+cd Job-recommend/CV-Analyzer-Job-Recommender/Multiple models
+python -m streamlit run .\job_recommender.py --server.enableXsrfProtection false
+!pip install -qU pypdf
+pip install jq
+pip install uuid
+
+from tqdm import tqdm
+
+my_list = list(range(100))
+with tqdm(total=len(my_list)) as pbar:
+    for x in my_list:
+       pbar.update(1)
+
+%pip install tqdm
+
+%pip install ipywidgets
+%jupyter nbextension enable --py widgetsnbextension
+%jupyter labextension install @jupyter-widgets/jupyterlab-manager
+
+import time
+from tqdm import tqdm
+
+for item in tqdm([0, 1, 2, 3, 4]):
+    time.sleep(1)
+
+conda list -e > req.txt
+conda create -n <environment-name> --file req.txt

@@ -39,7 +39,7 @@ For using **only OpenAI models**, nagivate to the folder **OpenAI models**. This
 **1. Install dependencies:**
 
 ```
-   pip install llama-index openai pydantic[email] streamlit llama_parse
+   pip install -r requirements.txt
 ```
 
 **2. Create a folder ".streamlit" in the root directory and create a "secrets.toml" file in it. Set your API keys there as follows:**

@@ -85,7 +85,7 @@ For selecting OpenAI or open-source models (such as llama), navigate to the fold
 ```
 
    **Install Ollama from their official website (https://ollama.com/)**
-   **Pull an open-source model from Ollama before using it in the application. For instance, use the following code to pull `llama3.3:latest`.
+   **Pull an open-source model from Ollama before using it in the application. For instance, use the following code to pull `llama3.2`
 
 ```
    ollama pull llama3.2

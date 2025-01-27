@@ -46,7 +46,6 @@ For using **only OpenAI models**, nagivate to the folder **OpenAI models**. This
 
 ```
    OPENAI_API_KEY = "your_OPENAI_api_key"
-   LLAMA_CLOUD_API_KEY = "your_llama_cloud_api_key"
 ```
 
 **3. Run the Streamlit app:**

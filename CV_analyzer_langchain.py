@@ -420,7 +420,7 @@ class CvAnalyzer:
             return index
 
     # Function to query job dataset to fetch the top k matching jobs according to the given education, skills, and experience.
-    def query_jobs(self, education, skills, experience, index, top_k=3):
+    def query_jobs(self, education, skills, experience, index, top_k=10):
         """
         Query the vector database for jobs matching the resume.
 
@@ -439,8 +439,13 @@ class CvAnalyzer:
         )
         query = f"Education: {', '.join(education)}; Skills: {', '.join(skills)}; Experience: {', '.join(experience)}"
         # Use retriever with appropriate model
-        retriever = index.as_retriever(similarity_top_k=top_k)
+        retriever = index.as_retriever(
+            search_type="similarity_score_threshold",
+            search_kwargs={"k": top_k, "score_threshold": 0.1, "fetch_k": 15},
+        )
         matches = retriever.invoke(query)
+        matches = [doc for doc in matches if "score" in doc.metadata]
+        matches = sorted(matches, key=lambda x: x.metadata["score"], reverse=True)
         return matches
 
 

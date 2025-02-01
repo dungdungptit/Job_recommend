@@ -122,7 +122,7 @@ def main():
                     retrieved_context = "\n\n".join(
                         [match.page_content for match in matching_jobs]
                     )
-                    candidate_details = f"Education: {', '.join(education)}; Skills: {', '.join(skills)}; Experience: {', '.join(experience)}"
+                    candidate_details = f"Education: {', '.join(education)};\nSkills: {', '.join(skills)};\nExperience: {', '.join(experience)}"
                     st.subheader("Candidate details")
                     st.write(str(candidate_details))
                     # st.subheader("Retrieved Context")
@@ -149,10 +149,11 @@ def main():
                             ---------------------
                             {context_str}
                             ---------------------
-                            Provide a concise list of the matching jobs. For each matching job, mention job-related details such as 
-                            company, brief job description, location, employment type, salary range, URL for each suggestion, and a brief explanation of why the job matches the candidate's profile.
+                            Provide two concise list of the matching jobs: IT related and Non-IT related jobs.Specify if it is IT related job or not in heading. For each matching job, mention job-related details such as 
+                            job matching score, company, brief job description, location, employment type, salary range, URL for each suggestion, and a brief explanation of why the job matches the candidate's profile.
                             Be critical in matching profile with the jobs. Thoroughly analyze education, skills, and experience to match jobs.  
                             Do not explain why the candidate's profile does not match with the other jobs. Do not include any summary. Order the jobs based on their relevance. 
+                            Note: give more preference to hard skills( python java c c++ etc)than soft skills (teamwork, communication, etc). Each jobs should be separated by a new line and sorted decending based on job matching score.
                             Answer: 
                             """,
                         ),

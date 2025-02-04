@@ -19,6 +19,7 @@ langchain-ollama
 langchain-huggingface
 langchain_core
 langchain_openai
+langchain-google-genai
 langchain_text_splitters==0.2.2
 langgraph
 langsmith

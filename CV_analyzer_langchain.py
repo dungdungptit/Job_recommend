@@ -18,6 +18,7 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_ollama.llms import OllamaLLM
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.vectorstores import FAISS
 from uuid import uuid4
 
@@ -126,11 +127,6 @@ class CvAnalyzer:
         """
         print(f"Extracting CV data. LLM: {self.llm_option}")
         output_schema = Candidate.model_json_schema()
-
-        if self.llm_option == "llama3.2":
-            self.llm = OllamaLLM(model="llama3.2", temperature=0.0)
-        else:
-            self.llm = ChatOpenAI(model=self.llm_option, temperature=0.0)
 
         # Load resume
         loader = PyPDFLoader(self.file_path)
@@ -344,7 +340,28 @@ class CvAnalyzer:
             print("CUDA is not available. Using CPU.")
 
         # Configure the LLM
-        if self.llm_option == "gpt-4o-mini":
+
+        if self.llm_option == "gemini-1.5-flash":
+            llm = ChatGoogleGenerativeAI(
+                model="gemini-1.5-flash",
+                temperature=0,
+                max_tokens=None,
+                timeout=None,
+                max_retries=2,
+                api_key=os.getenv("GOOGLE_API_KEY"),
+                # other params...
+            )
+        elif self.llm_option == "gemini-1.5-pro":
+            llm = ChatGoogleGenerativeAI(
+                model="gemini-1.5-pro",
+                temperature=0,
+                max_tokens=None,
+                timeout=None,
+                max_retries=2,
+                api_key=os.getenv("GOOGLE_API_KEY"),
+                # other params...
+            )
+        elif self.llm_option == "gpt-4o-mini":
             llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
         elif self.llm_option == "llama3.2":
             llm = OllamaLLM(
@@ -363,6 +380,7 @@ class CvAnalyzer:
 
         # Set the models in Settings
         self.llm = llm
+        # print(f"LLM model: {self.llm}")
         self.embedding_model = embed_model
 
     # Function to create an existing job vector dataset or create a new job vector dataset
@@ -441,12 +459,16 @@ class CvAnalyzer:
         # Use retriever with appropriate model
         retriever = index.as_retriever(
             search_type="similarity_score_threshold",
-            search_kwargs={"k": top_k, "score_threshold": 0.1, "fetch_k": 15},
+            search_kwargs={"k": top_k, "score_threshold": 0.05, "fetch_k": 15},
         )
         matches = retriever.invoke(query)
-        matches = [doc for doc in matches if "score" in doc.metadata]
-        matches = sorted(matches, key=lambda x: x.metadata["score"], reverse=True)
-        return matches
+
+        data = [doc for doc in matches if "score" in doc.metadata]
+        if len(data) == 0:
+            return matches
+        else:
+            data = sorted(matches, key=lambda x: x.metadata["score"], reverse=True)
+        return data
 
 
 if __name__ == "__main__":

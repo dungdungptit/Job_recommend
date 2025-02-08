@@ -32,9 +32,9 @@ Clone the repository:
    cd Job-recommend
 ```
 
-## For OpenAI Models
+## For OpenAI Models or Gemini Models
 
-For using **only OpenAI models**, nagivate to the folder **OpenAI models**. This code uses `gpt-4o` large langugae model and 'text-embedding-3-large' embedding model.
+For using **OpenAI Models or Gemini Models.** This code uses `gpt-4o` or `gemini 1.5 flash or gemini 1.5 pro `large langugae model and 'text-embedding-3-large' embedding model.
 
 **1. Install dependencies:**
 
@@ -46,12 +46,15 @@ For using **only OpenAI models**, nagivate to the folder **OpenAI models**. This
 
 ```
    OPENAI_API_KEY = "your_OPENAI_api_key"
+or
+   GOOGLE_API_KEY = "your_GOOGLE_api_key"
+or both these api key above
 ```
 
 **3. Run the Streamlit app:**
 
 ```
-   python -m streamlit run .\job_recommender.py  
+   python -m streamlit run .\job_recommender.py --server.enableXsrfProtection false
 ```
 
 The job dataset is in the folder 'job_index_storage'. To create a new vector database for modified job dataset, just delete the folder 'job_index_storage'. A new vector database will be created. Whenever the job dataset in the JSON file *sample_jobs* will change, a new vector database will have to be created.
@@ -91,15 +94,7 @@ For selecting OpenAI or open-source models (such as llama), navigate to the fold
    ollama pull llama3.2
 ```
 
-## 2. Set up API keys:
-
-   Create a folder ".streamlit" in the root directory and create a "secrets.toml" file in it. Set your API keys there as follows:
-
-```
-   OPENAI_API_KEY = "your_OPENAI_api_key"
-```
-
-## 3. Run the Streamlit app:
+## 2. Run the Streamlit app:
 
 ```
    python -m streamlit run .\job_recommender.py --server.enableXsrfProtection false

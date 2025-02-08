@@ -229,17 +229,17 @@ def main():
                         Answer: 
                         """,
                     )
-
-                    # llm_response = rag_engine.custom_query(
-                    #     candidate_details=candidate_details,
-                    #     retrieved_jobs=retrieved_context,
-                    # )
                     llm_response = custom_query(
                         llm=analyzer.llm,
                         qa_prompt=qa_prompt,
                         candidate_details=candidate_details,
                         retrieved_jobs=retrieved_context,
                     )
+
+                    # llm_response = rag_engine.custom_query(
+                    #     candidate_details=candidate_details,
+                    #     retrieved_jobs=retrieved_context,
+                    # )
                     # llm_response = "1. **Job Title:** Human Resources Recruiter  \n   **Company:** OfficeTeam  \n   **Job Description:** Responsible for gathering job description details, posting jobs, screening resumes, actively recruiting, phone screening candidates, scheduling interviews, generating offer letters, and assisting with onboarding.  \n   **Location:** Milwaukee, WI  \n   **Employment Type:** Seasonal/Temp  \n   **Salary Range:** $16.15 to $18.70 per hour  \n   **URL:** [Apply Here](mailto:OfficeTeam@414-271-4003)  \n   **Explanation:** The candidate has strong communication skills and experience in teamwork and problem-solving, which are essential for recruiting. Their research skills and ability to work with various technologies could aid in sourcing candidates effectively.\n\n2. **Job Title:** Receptionist  \n   **Company:** OfficeTeam  \n   **Job Description:** First point of contact for a private school, responsible for greeting parents, managing enrollment papers, calendar management, and answering phones.  \n   **Location:** San Bruno, CA  \n   **Employment Type:** Seasonal/Temp  \n   **Salary Range:** $14.00 to $15.00 per hour  \n   **URL:** [Apply Here](mailto:OfficeTeam@ClickHereToEmailYourResumé)  \n   **Explanation:** The candidate's strong verbal and written communication skills, along with their ability to multitask, align well with the requirements of a receptionist role. Their experience in customer service and teamwork would be beneficial in this position.\n\n3. **Job Title:** Receptionist  \n   **Company:** Mind of Beauty Day Spa  \n   **Job Description:** Act as a receptionist and support staff as needed.  \n   **Location:** Los Altos, CA  \n   **Employment Type:** Part-Time  \n   **Salary Range:** Not specified  \n   **URL:** [Apply Here](mailto:MindOfBeautyDaySpa@Apply)  \n   **Explanation:** The candidate's communication skills and ability to work in a team environment make them suitable for a receptionist role. Although the job requires fluency in Mandarin, the candidate's bilingual skills in Vietnamese and English may still be advantageous in a diverse workplace."
 
                     # Display extracted information
